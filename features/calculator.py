@@ -117,7 +117,7 @@ def Operators():
 # All of this stuff needs answers, this is just telling the user "The answer is...."
 def AnswerIs():
     print("The answer is...")
-# Idk why this is ehre but itll break the code if i remove it (it has 13 usages) so uh its here i guess
+# Idk why this is here but itll break the code if i remove it (it has 13 usages) so uh its here i guess
 def emptyLine():
     print()
 #for fuctions

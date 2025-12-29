@@ -1,1 +1,2 @@
 *.html linguist-detectable=false
+main.py linguist-language=Python
