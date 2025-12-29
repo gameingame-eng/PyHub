@@ -4,6 +4,7 @@ import time
 import base64
 import runpy
 from pathlib import Path
+import sys
 # FUnctions
 def get_stored_name():
     # Define the path
@@ -57,12 +58,18 @@ print("Welcome to PyHub!")
 print("Here is a list of available features with a corresponding number")
 time.sleep(1)
 print("1 - Snake Calculator")
+print("2 - Games")
 feature = input("What feature would you like to access? ")
 if feature == "1":
     print("OK!")
     print("Running Snake Calculator")
     runpy.run_path("features/calculator.py")
+elif feature == "2":
+    print("Running Games")
+    runpy.run_path("features/GameHub/games.py")
 else:
     print("Invalid.")
 print("Thank you for using PyHub!")
-doitagain = input("Would you like to use another feature (restart program)? (Y/N)")
+print("Please rerun for using a different program")
+print("Bye now!")
+sys.exit(0)

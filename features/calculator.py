@@ -2,43 +2,52 @@
 import plotext as plt
 import numpy as np
 import math
-import os
+import os as iamatrainin
 import base64
 from pathlib import Path
+import runpy as run
+
+
+
+def get_project_root():
+    """Detects the root project directory regardless of where this is called from."""
+    current_path = Path(__file__).resolve().parent
+    # If we are inside 'features', go up one more level to reach root
+    if current_path.name == "features":
+        return current_path.parent
+    return current_path
 
 
 def get_stored_name():
-    # Define the path
-    ROOT = Path(__file__).parent
-    folder = f"{ROOT}/system_files"
-    filename = f"{folder}/username.bin"
+    root = get_project_root()
+    folder = root / "system_files"
+    filename = folder / "username.bin"
 
-    if os.path.exists(filename):
+    if filename.exists():
         try:
-            with open(filename, "rb") as file:
-                encoded_data = file.read()
-                return base64.b64decode(encoded_data).decode("utf-8")
+            # Modern 2025 way: read_bytes() removes the need for 'with open'
+            encoded_data = filename.read_bytes()
+            return base64.b64decode(encoded_data).decode("utf-8")
         except Exception:
             return None
     return None
 
 
 def save_name(name):
-    ROOT = Path(__file__).parent
-    folder = f"{ROOT}/system_files"
-    filename = f"{folder}/username.bin"
+    root = get_project_root()
+    folder = root / "system_files"
+    filename = folder / "username.bin"
 
-    permission = input(f"Ok {name}, Can I save your name locally for future refrence? (Y/N): ")
+    permission = input(f"Ok {name}, Can I save your name locally? (Y/N): ")
 
     if permission.lower() == 'y':
-        # 1. Create the directory if it doesn't exist
-        if not os.path.exists(folder):
-            os.makedirs(folder)
+        # Ensure the directory exists at the root level
+        folder.mkdir(parents=True, exist_ok=True)
 
-        # 2. Encode and save
         encoded_name = base64.b64encode(name.encode("utf-8"))
-        with open(filename, "wb") as file:
-            file.write(encoded_name)
+
+        # Modern 2025 way: write_bytes() handles the file stream for you
+        filename.write_bytes(encoded_name)
         print(f"Name stored securely in {filename}")
     else:
         print("Name will not be saved.")
@@ -108,7 +117,7 @@ def Operators():
 # All of this stuff needs answers, this is just telling the user "The answer is...."
 def AnswerIs():
     print("The answer is...")
-# Idk why this is ehre but itll break the code if i remove it so uh its here i guess
+# Idk why this is ehre but itll break the code if i remove it (it has 13 usages) so uh its here i guess
 def emptyLine():
     print()
 #for fuctions
@@ -177,6 +186,8 @@ def again():
     print("15 - equations (one-variable)")
     print("16 - Rounding")
     print("17 - functions")
+    print("18 - Go back")
+    print("19 - Switch to games menu")
     while True:
         try:
             choice = int(input("Please enter your number "))
@@ -396,6 +407,11 @@ def again():
             if user_input.lower() == 'quit':
                 quit()
             plot_function_console(user_input)
+    elif choice == 18:
+        run.run_path("./main.py")
+    elif choice == 19:
+        print("Switching to games menu...")
+        run.run_path("./features/GameHub/games.py")
     elif choice == 67:
         # Indentation corrected
         print("6-6-6-6-6-6-7-7-- SIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENvSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVENSIX SEVEN SIX SEVEN")
@@ -408,7 +424,7 @@ def again():
         print("what you have entered has not been added yet, is invalid, or has a typo. Please try again. Thank you.")
         again()
     
-    # Rest of the function (already correctly indented in the original snippet) ...
+
 
 
     time.sleep(1.3141592653859)
