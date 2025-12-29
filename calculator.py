@@ -1,11 +1,68 @@
-# Welcome to Cliprun! 👋
-"""
-Snake Calculator
-v1.6
-By Lakshya
-"""
 
-#----------functions---------
+import plotext as plt
+import numpy as np
+import math
+import os
+import base64
+
+
+def get_stored_name():
+    # Define the path
+    folder = "system_files"
+    filename = os.path.join(folder, "username.bin")
+
+    if os.path.exists(filename):
+        try:
+            with open(filename, "rb") as file:
+                encoded_data = file.read()
+                return base64.b64decode(encoded_data).decode("utf-8")
+        except Exception:
+            return None
+    return None
+
+
+def save_name(name):
+    folder = "system_files"
+    filename = os.path.join(folder, "username.bin")
+
+    permission = input(f"Can I save your name ({name}) for future refrence (Y/N): ")
+
+    if permission.lower() == 'y':
+        # 1. Create the directory if it doesn't exist
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+        # 2. Encode and save
+        encoded_name = base64.b64encode(name.encode("utf-8"))
+        with open(filename, "wb") as file:
+            file.write(encoded_name)
+        print(f"Name stored securely in {filename}")
+    else:
+        print("Name will not be saved.")
+
+
+# --- Use these inside your again() function ---
+# Improved Arithmetic Example
+def perform_arithmetic():
+    try:
+        count = int(input('How many numbers? '))
+        op = input("Operator (+, -, *, /): ")
+        result = float(input("Enter number 1: "))
+
+        for i in range(1, count):
+            num = float(input(f"Enter number {i + 1}: "))
+            if op == "+":
+                result += num
+            elif op == "-":
+                result -= num
+            elif op == "*":
+                result *= num
+            elif op == "/":
+                if num == 0: return print("Error: Division by zero")
+                result /= num
+        print(f"The answer is: {result}")
+    except ValueError:
+        print("Invalid input.")
 def get_line_equation(x1, y1, x2, y2):
     """
     Calculates the slope (m) and y-intercept (b) for a line 
@@ -34,20 +91,7 @@ def calculate_sine():
 
     # You can call this function within your main calculator loop or directly
     calculate_sine()
-def ForArith():
-    mathProblemnums = int(input('How many numbers do you want in your equation? '))
-    Operators()
-    mathProblemOp = str(input("What operator would you like me to use? "))
-    if mathProblemOP == "/":
-        print("Ok!")
-    elif mathProblemOP == "*":
-        print("Ok!")
-    elif mathProblemOP == "-":
-        print("Ok!")
-    elif mathProblemOP == "+":
-        print("Ok!")
-    else:
-        Invalid()
+
 # The purpose of this fuction is to tell the suer if any inputs pur in the code are invalid
 # Ex. If you tried to add "e" and"f" it would call Invalid()
 def Invalid():
@@ -96,8 +140,15 @@ def again():
     import plotext as plt
     import numpy as np
     arithnum = 0
-    name = input("What's your name? ")
-    print('Hello, ' + name + '!')
+    # Try to load existing name
+    name = get_stored_name()
+
+    if name:
+        print(f"Welcome back, {name}!")
+    else:
+        name = input("What's your name? ")
+        save_name(name)
+        print(f"Hello, {name}!")
     time.sleep(0.47567)
     print('Welcome to to the snake calculator!')
     time.sleep(0.376786777777777777887669814)
@@ -130,76 +181,7 @@ def again():
         except ValueError:
             Invalid()
     if choice == 1:
-        print('Ok!')
-        print()
-        while True:
-            try: 
-                mathProblemnums = int(input('How many numbers do you want in your equation? '))
-                Operators()
-                mathProblemOp = str(input("What operator would you like me to use? "))
-                if mathProblemOp == "/":
-                    print("Ok!")
-                    break
-                elif mathProblemOp == "*":
-                    print("Ok!")
-                    break
-                elif mathProblemOp == "-":
-                    print("Ok!")
-                    break
-                elif mathProblemOp == "+":
-                    print("Ok!")
-                    break
-                else:
-                    Invalid()
-                    ForArith()
-                
-            except ValueError:
-                Invalid()
-        for i in range(mathProblemnums):
-            while True:
-                if mathProblemOp == "+":
-                    try:
-                        anum = int(input(f"Enter number {i + 1}: "))
-                        arithnum += anum
-                        break
-                    except ValueError:
-                        Invalid()
-                elif mathProblemOp == "-":
-                    try:
-                        anum = int(input(f"Enter number {i + 1}: "))
-                        arithnum -= anum
-                        break
-                    except ValueError:
-                        Invalid()
-                elif mathProblemOp == "*":
-                    try:
-                        anum = int(input(f"Enter number {i + 1}: "))
-                        arithnum *= anum
-                        break
-                    except ValueError:
-                        Invalid()    
-                elif mathProblemOp == "/":
-                    try:
-                        # Ensure 'divisor' is treated as a number (e.g., float or int)
-                        # If 'divisor' is a variable holding a string from user input, convert it:
-                        # divisor = float(divisor) 
-                        
-                        current_value = current_value / divisor  # Divide and reassign
-                        print(f"Current value: {current_value}")
-                    
-                        # Call your existing functions
-                        AnswerIs()
-                        print(str(arithnum) + "!")
-                    
-                    # Catch the specific error for division by zero
-                    except ZeroDivisionError:
-                        print("Error: Cannot divide by zero.")
-                        Invalid()
-                    
-                    # Catch the error if 'divisor' cannot be converted to a number
-                    except ValueError:
-                        print("Error: Invalid number input for divisor.")
-                        Invalid()
+        perform_arithmetic()
 
 
         
@@ -217,21 +199,23 @@ def again():
     elif choice == 4:
         F_to_Dnum = input('numerator? ')
         F_to_Dden = input("Denominator? ")
-        print(int(F_to_Dnum)/int(F_to_Dden))
+        F_to_Dans = int(F_to_Dnum)/int(F_to_Dden)
+        print(F_to_Dans)
         print(" ")
         print("answer is above!")
         
-        print(F_to_DAns + ' Is the decimal equivalent of ' + F_to_D)
+        print(f" {F_to_Dans} Is the decimal equivalent of {F_to_Dnum}" )
     elif choice == 5:
         croot = float(input("What number would you like me to get the cube root of? "))
         emptyLine()
         emptyLine()
-        print("The cube root of " + str(croot) + "is...")
+        print(f"The cube root of  {str(croot)} is...")
         print(croot ** (1 / 3))
     elif choice == 6:
         emptyLine()
         absval = int(input("What would you like the absolute value of? "))
-        print("the absolute value of " + str(absval) + " is " + str(abs(absval) + "!"))
+        absval2 = abs(absval)
+        print(f"the absolute value of {str(absval)} is {absval2}")
     elif choice == 7:
         emptyLine()
         factorialvalue = input("what number would you like me to get the factorial of? ")
