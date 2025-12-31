@@ -4,19 +4,30 @@ import difflib
 import string
 from pathlib import Path
 
+import sys
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 
 def load_word_list():
-    # Path(__file__).parent points to the folder THIS script is in
     folder = Path(__file__).parent
-    json_path = folder / "words_dictionary.json"
 
-    # Check if the file exists in the same folder
+    # 1. Wrap the joined path in Path() so it becomes a Path object
+    json_path = Path(resource_path(os.path.join("features", "PySpelling", "words_dictionary.json")))
+
+    # 2. Move the existence check BEFORE trying to open the file
     if not json_path.exists():
-        print(f"❌ Error: {json_path.name} not found in {folder}")
+        print(f"❌ Error: {json_path.name} not found in {json_path.parent}")
         print("Please move the JSON file into the PySpelling folder.")
         return None
 
     print("Loading local database...")
+    # 3. Use 'with' once to load the data
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         return set(data.keys())

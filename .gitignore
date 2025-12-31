@@ -1,3 +1,5 @@
 /system_files
-
 /features/system_files/
+/build
+/dist
+main.spec

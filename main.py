@@ -1,89 +1,47 @@
-#imports
 import os
-import time
-import base64
+import sys
+import platform
 import runpy
-from pathlib import Path
-import sys as s
-# FUnctions
-def featureChoice():
-    if feature == "1":
-        print("OK!")
-        print("Running Snake Calculator")
-        runpy.run_path("features/calculator.py")
-    elif feature == "2":
-        print("Running Games")
-        runpy.run_path("features/GameHub/games.py")
-    elif feature == "3":
-        print("running PySpell...")
-        runpy.run_path("features/PySpelling/dictionary.py")
-    elif feature == "4":
-        runpy.run_path("dat.py")
-    elif feature == ("5"):
-        print("Thanks for using me!")
-        print("Exiting PyHub....")
-        s.exit(67)
-    else:
-        print("Invalid.")
-def get_stored_name():
-    # Define the path
-    ROOT = Path(__file__).parent
-    folder = ROOT / "system_files"
-    filename = folder / "username.bin"
 
-    if os.path.exists(filename):
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+def clear():
+    os.system("cls" if platform.system() == "Windows" else "clear")
+
+def main_menu():
+    while True:
+        clear()
+        print("--- PyHub ---")
+        print("1. Calculator")
+        print("2. GameHub")
+        print("3. PySpelling")
+        print("4. User Data")
+        print("5. Exit")
+
+        choice = input("Select: ")
+
         try:
-            with open(filename, "rb") as file:
-                encoded_data = file.read()
-                return base64.b64decode(encoded_data).decode("utf-8")
-        except Exception:
-            return None
-    return None
+            if choice == "1":
+                # Path inside the EXE bundle
+                # Use run_name="__main__" or it will crash inside the EXE
+                runpy.run_path(resource_path(os.path.join("features", "calculator.py")), run_name="__main__")
+            elif choice == "2":
+                runpy.run_path(resource_path(os.path.join("features", "GameHub", "games.py")), run_name="__main__")
+            elif choice == "3":
+                runpy.run_path(resource_path(os.path.join("features", "PySpelling", "dictionary.py")), run_name="__main__")
+            elif choice == "4":
+                runpy.run_path(resource_path("dat.py"), run_name="__main__")
+            elif choice == "5":
+                break
+        except Exception as e:
+            print(f"Error launching feature: {e}")
+            input("Press Enter to continue...")
 
-
-def save_name(name):
-    ROOT = Path(__file__).parent
-    folder = ROOT / "system_files"
-    filename = folder / "username.bin"
-
-    permission = input(f"Ok {name}, Can I save your name locally for future refrence? (Y/N): ")
-
-    if permission.lower() == 'y':
-        # 1. Create the directory if it doesn't exist
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-
-        # 2. Encode and save
-        encoded_name = base64.b64encode(name.encode("utf-8"))
-        with open(filename, "wb") as file:
-            file.write(encoded_name)
-        print(f"Name stored securely in {filename}")
-    else:
-        print("Name will not be saved.")
-
-
-
-print("Hello!")
-name = get_stored_name()
-
-if name:
-    print(f"Welcome back, {name}!")
-else:
-    name = input("What's your name? ")
-    save_name(name)
-    print(f"Hello, {name}!")
-time.sleep(2)
-print("Welcome to PyHub!")
-print("Here is a list of available features with a corresponding number")
-time.sleep(1)
-print("1 - Snake Calculator")
-print("2 - Games")
-print("3 - Spell Checker")
-print("4 - Change Name")
-print("5 - exit")
-feature = input("What feature would you like to access? ")
-featureChoice()
-print("Thank you for using PyHub!")
-print("Please rerun for using a different program")
-print("Bye now!")
-s.exit(0)
+if __name__ == "__main__":
+    main_menu()
