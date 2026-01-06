@@ -4,3 +4,5 @@
 # genereated files from building into exe
 /build
 main.spec
+# pycahe
+/features/GameHub/__pycache__
