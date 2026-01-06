@@ -36,3 +36,14 @@ LICENSE linguist-language=Markdown
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
 
+
+
+features/GameHub/games/snowrider.html linguist-detectable=true
+
+
+
+
+
+
+
+
