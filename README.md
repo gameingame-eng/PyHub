@@ -50,7 +50,7 @@ __Python 3.12.10__
 
 __No__ external dependencies (unless you add them)
 
-**Pull requests are welcome.** For major changes, please __*open an issue*__ first to discuss what you’d like to modify.
+**Pull requests are welcome.** For major changes, please __*open an issue*__ first to discuss what you'd like to modify.
 
 ## Running
 There are multiple ways to run this project
