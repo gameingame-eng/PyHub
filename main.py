@@ -4,7 +4,7 @@ import platform
 import runpy
 
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
+    # Get absolute path to resource, works for dev and for PyInstaller
     try:
         base_path = sys._MEIPASS
     except Exception:
@@ -21,7 +21,7 @@ def main_menu():
         print("1. Calculator")
         print("2. GameHub")
         print("3. PySpelling")
-        print("4. User Data")
+        print("4. User Data Management")
         print("5. Exit")
 
         choice = input("Select: ")
