@@ -88,3 +88,10 @@ In your file explorer, go to ./dist/main and double click the exe file. this may
 ### If you are on Linux or MacOS, Your OS is not supported yet. your best option is to take the src code, `cd` into the dir, and use `python3 main.py`.
 
 #### I am really sorry for the inconvenience and i will add MacOS and Linux soon! 
+<br>
+
+## License
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+You may use, modify, and share this project for non-commercial purposes as long as you provide attribution.
+Commercial use is not permitted.
