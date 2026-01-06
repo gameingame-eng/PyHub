@@ -36,4 +36,3 @@ LICENSE linguist-language=Markdown
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
 
-# 7. 
