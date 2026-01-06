@@ -1,9 +1,0 @@
-so uh
-
-
-i got the json file for the spellchecker form this repo
-thanks a bunch
-https://github.com/dwyl/english-words/blob/master/words_dictionary.json
-
-thanks
-also wow 300K words is wild
