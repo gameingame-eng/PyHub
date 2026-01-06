@@ -1,2 +1,39 @@
 *.html linguist-detectable=false
 LICENSE linguist-language=Markdown
+# 1. Handle line endings automatically for all files
+* text=auto
+
+# 2. Python source files - force LF and use Python diff engine
+*.py       text diff=python eol=lf
+*.pyw      text diff=python eol=lf
+*.pyi      text diff=python eol=lf
+
+# 3. Documentation and config
+*.md       text eol=lf
+*.txt      text eol=lf
+*.json     text eol=lf
+*.yaml     text eol=lf
+*.yml      text eol=lf
+.gitignore text eol=lf
+
+# 4. Binary files - ensure they aren't corrupted by text conversion
+*.pyc      binary
+*.pyo      binary
+*.pyd      binary
+*.db       binary
+*.sqlite   binary
+*.pkl      binary
+*.pickle   binary
+
+# 5. Graphics/Assets
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.ico      binary
+
+# 6. Windows-specific scripts - force CRLF so they run correctly on Windows
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
+
+# 7. 
