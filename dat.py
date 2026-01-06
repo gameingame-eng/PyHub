@@ -1,4 +1,4 @@
-import base64
+import base64 as b64
 import os
 from pathlib import Path
 import runpy as run
@@ -18,7 +18,7 @@ def get_stored_name():
         try:
             with open(filename, "rb") as file:
                 encoded_data = file.read()
-                name = base64.b64decode(encoded_data).decode("utf-8")
+                name = b64.b64decode(encoded_data).decode("utf-8")
                 return name
         except Exception:
             return None
@@ -45,7 +45,7 @@ def update_username():
 
     try:
         # 4. Encode to Base64 (to match your existing system)
-        encoded_name = base64.b64encode(new_name.encode("utf-8"))
+        encoded_name = b64.b64encode(new_name.encode("utf-8"))
 
         # 5. Write to the file
         with open(filename, "wb") as file:

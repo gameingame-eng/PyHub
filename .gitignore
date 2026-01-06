@@ -1,5 +1,8 @@
+# auto generated files by the python script
 /system_files
 /features/system_files/
+# genereated files from building into exe
 /build
-/dist
 main.spec
+# pycache
+/features/GameHub/__pycache__
