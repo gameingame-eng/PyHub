@@ -1,4 +1,8 @@
-
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
 import plotext as plt
 import numpy as np
 import math

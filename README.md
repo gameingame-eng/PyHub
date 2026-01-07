@@ -33,16 +33,8 @@ Run the project
 python3 main.py
 ```
 
-### Add your own features
+### For more information, please refer to .github/CONTRIBUTING
 
-Create a new file inside features/:
-
-__File: features/my_feature.py__
-```python
-def run():
-print("My feature is running!")
-```
-Then import or register it in main.py..
 
 ## Requirements
 

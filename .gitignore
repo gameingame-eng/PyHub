@@ -5,4 +5,7 @@
 /build
 main.spec
 # pycache
-/features/GameHub/__pycache__
+__pycache__
+*.pyc
+.github/hi.s
+# main.exe
