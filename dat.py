@@ -1,3 +1,8 @@
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
 import base64 as b64
 import os
 from pathlib import Path
