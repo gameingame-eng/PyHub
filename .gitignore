@@ -7,3 +7,4 @@ main.spec
 # pycache
 __pycache__
 *.pyc
+.github/hi.s
