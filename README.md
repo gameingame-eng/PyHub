@@ -56,7 +56,7 @@ There are __three__ ways to run this project on Windows.
 Just double-click on the `run.cmd` file in the root dir and it should run the project.
 <br>
 
-#### 2. CLI (fast but a little complicated) (DOES NOT WORK YET- WILL ADD BY END OF 1/6/26)
+#### 2. CLI (fast but a little complicated)
 
 Open __Terminal__ or __PowerShell__
 
