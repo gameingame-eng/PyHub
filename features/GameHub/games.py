@@ -67,11 +67,13 @@ def games_menu():
             launch_game("snowrider")
         elif choice == "2":
             launch_game("Drive_mad")
-        elif choice == "3":
+        elif choice == "4":
             print("Returning...")
             # Instead of runpy back to main (which creates a loop),
             # we just 'return' to go back to where we were called from
             return
+        elif choice == "3":
+            run.run_path("games/pong/launcher.py")
         else:
             print("Invalid selection. Try again.")
             time.sleep(1)
