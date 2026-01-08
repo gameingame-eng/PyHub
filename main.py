@@ -25,7 +25,7 @@ def clear():
     else:
         os.system("cls" if platform.system() == "Windows" else "clear")
 
-def main_menu():
+def main():
     while True:
         clear()
         print("--- PyHub ---")
@@ -58,4 +58,4 @@ def main_menu():
             input("Press Enter to continue...")
 
 if __name__ == "__main__":
-    main_menu()
+    main()
