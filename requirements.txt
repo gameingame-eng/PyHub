@@ -1,3 +1,4 @@
 plotext
 numpy
 pywebview
+pygame

@@ -5,11 +5,15 @@ https://creativecommons.org/licenses/by-nc/4.0/
 """
 
 
-
+import pygame
 import os
 import sys
 import platform
 import runpy
+def playmusic():
+    pygame.mixer.init()
+    pygame.mixer.music.load("features/music/elevator-music.mp3")
+    pygame.mixer.music.play(-1)  # -1 = loop forever
 
 def resource_path(relative_path):
     # Get absolute path to resource, works for dev and for PyInstaller
@@ -35,6 +39,7 @@ def main():
         print("4. PassGen")
         print("5. User Data Management")
         print("6. Exit")
+        print("----Thank you to lkoliks or the backround music-----")
 
         choice = input("Select: ")
 
@@ -58,4 +63,5 @@ def main():
             input("Press Enter to continue...")
 
 if __name__ == "__main__":
+    playmusic()
     main()
