@@ -3,7 +3,11 @@ import os
 from pathlib import Path
 import runpy as run
 import time as t
-
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
 # Globals
 name = None
 name_found = False
