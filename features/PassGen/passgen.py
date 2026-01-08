@@ -1,3 +1,8 @@
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
 import random
 import string
 import runpy as run
