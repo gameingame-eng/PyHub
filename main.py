@@ -29,8 +29,9 @@ def main_menu():
         print("1. Calculator")
         print("2. GameHub")
         print("3. PySpelling")
-        print("4. User Data Management")
-        print("5. Exit")
+        print("4. PassGen")
+        print("5. User Data Management")
+        print("6. Exit")
 
         choice = input("Select: ")
 
@@ -43,10 +44,12 @@ def main_menu():
                 runpy.run_path(resource_path(os.path.join("features", "GameHub", "games.py")), run_name="__main__")
             elif choice == "3":
                 runpy.run_path(resource_path(os.path.join("features", "PySpelling", "dictionary.py")), run_name="__main__")
-            elif choice == "4":
-                runpy.run_path(resource_path("dat.py"), run_name="__main__")
             elif choice == "5":
+                runpy.run_path(resource_path("dat.py"), run_name="__main__")
+            elif choice == "6":
                 break
+            elif choice == "4":
+                runpy.run_path(resource_path(os.path.join("features", "PassGen", "passgen.py")), run_name="__main__")
         except Exception as e:
             print(f"Error launching feature: {e}")
             input("Press Enter to continue...")
