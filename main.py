@@ -4,19 +4,41 @@ Licensed under CC BY-NC 4.0.
 https://creativecommons.org/licenses/by-nc/4.0/
 """
 
-
 import pygame
 import os
 import sys
 import platform
 import runpy
+
+# Global variable to track music state
+music_paused = False
+
 def playmusic():
+    """Initializes and starts the music."""
+    global music_paused
     pygame.mixer.init()
-    pygame.mixer.music.load("features/music/elevator-music.mp3")
-    pygame.mixer.music.play(-1)  # -1 = loop forever
+    try:
+        # Using resource_path to ensure it works in EXE
+        music_file = resource_path(os.path.join("features", "music", "elevator-music.mp3"))
+        pygame.mixer.music.load(music_file)
+        pygame.mixer.music.play(-1)
+        music_paused = False
+    except Exception as e:
+        print(f"Could not load music: {e}")
+
+def toggle_music():
+    """Toggles the music state."""
+    global music_paused
+    if music_paused:
+        pygame.mixer.music.unpause()
+        music_paused = False
+        print("Music Resumed!")
+    else:
+        pygame.mixer.music.pause()
+        music_paused = True
+        print("Music Paused!")
 
 def resource_path(relative_path):
-    # Get absolute path to resource, works for dev and for PyInstaller
     try:
         base_path = sys._MEIPASS
     except Exception:
@@ -39,14 +61,16 @@ def main():
         print("4. PassGen")
         print("5. User Data Management")
         print("6. Exit")
-        print("----Thank you to lkoliks or the backround music-----")
+        print(f"--- Music: {'OFF' if music_paused else 'ON'} (Press 'k' + Enter to toggle) ---")
+        print("----Thank you to lkoliks for the background music-----")
 
-        choice = input("Select: ")
+        choice = input("Select: ").lower() # .lower() handles 'K' or 'k'
 
         try:
-            if choice == "1":
-                # Path inside the EXE bundle
-                # Use run_name="__main__" or it will crash inside the EXE
+            if choice == "k":
+                toggle_music()
+                continue # Refresh the menu to show updated status
+            elif choice == "1":
                 runpy.run_path(resource_path(os.path.join("features", "calculator.py")), run_name="__main__")
             elif choice == "2":
                 runpy.run_path(resource_path(os.path.join("features", "GameHub", "games.py")), run_name="__main__")
