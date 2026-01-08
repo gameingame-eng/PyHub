@@ -20,7 +20,10 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 def clear():
-    os.system("cls" if platform.system() == "Windows" else "clear")
+    if platform.system() == "wasi":
+        print("")
+    else:
+        os.system("cls" if platform.system() == "Windows" else "clear")
 
 def main_menu():
     while True:
