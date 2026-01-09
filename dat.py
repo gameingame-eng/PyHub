@@ -77,6 +77,7 @@ updateornot = nameupd()
 if updateornot.lower() == "y":
     update_username()
     print("Task complete, returning to PyHub....")
+    t.sleep(1)
     run.run_path("main.py")
 
 elif updateornot.lower() == "n":
