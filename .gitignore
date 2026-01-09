@@ -8,3 +8,5 @@ main.spec
 __pycache__
 *.pyc
 .github/hi.s
+features/GameHub/games/pong/resource.res
+features/GameHub/games/pong/pong.exe
