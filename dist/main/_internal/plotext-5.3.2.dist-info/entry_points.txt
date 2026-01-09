@@ -1,2 +1,0 @@
-[console_scripts]
-plotext = plotext.plotext_cli:main
