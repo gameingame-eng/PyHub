@@ -74,8 +74,6 @@ def games_menu():
             launch_game("Drive_mad")
         elif choice == "4":
             print("Returning...")
-            # Instead of runpy back to main (which creates a loop),
-            # we just 'return' to go back to where we were called from
             return
         elif choice == "3":
             # Construct the absolute path using your resource_path function
@@ -90,10 +88,4 @@ def games_menu():
         else:
             print("Invalid selection. Try again.")
             time.sleep(1)
-
-
-# 3. THIS IS THE FIX for the 'automatic launching'
-# It tells Python: Only run games_menu() if I double-click games.py.
-# If main.py imports me, stay quiet.
-
 games_menu()
