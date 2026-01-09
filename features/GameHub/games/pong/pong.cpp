@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <fstream> // For file operations
+#include <fstream>
 #include <string>
 
 #undef main  
@@ -14,24 +14,14 @@ struct ScoreData {
     int p2 = 0;
 };
 
-// Function to save scores to a binary file
+// --- UPDATED: APPENDS TO FILE INSTEAD OF OVERWRITING ---
 void saveScores(const ScoreData& data) {
-    std::ofstream outFile(SAVE_PATH, std::ios::binary);
+    // std::ios::app ensures every save is a new entry at the end of the file
+    std::ofstream outFile(SAVE_PATH, std::ios::binary | std::ios::app); 
     if (outFile.is_open()) {
         outFile.write(reinterpret_cast<const char*>(&data), sizeof(ScoreData));
         outFile.close();
     }
-}
-
-// Function to load scores from a binary file
-ScoreData loadScores() {
-    ScoreData data;
-    std::ifstream inFile(SAVE_PATH, std::ios::binary);
-    if (inFile.is_open()) {
-        inFile.read(reinterpret_cast<char*>(&data), sizeof(ScoreData));
-        inFile.close();
-    }
-    return data;
 }
 
 void updateConsoleScore(int s1, int s2) {
@@ -42,33 +32,33 @@ void updateConsoleScore(int s1, int s2) {
     #endif
 
     std::cout << "============================" << std::endl;
-    std::cout << "      PONG LEADERBOARD      " << std::endl;
-    std::cout << " (Scores Saved to System)   " << std::endl;
+    std::cout << "      PONG SESSION LIVE     " << std::endl;
+    std::cout << " (Appending to System Log)  " << std::endl;
     std::cout << "============================" << std::endl;
     std::cout << "  Player 1: " << s1 << " | Player 2: " << s2 << std::endl;
     std::cout << "============================" << std::endl;
 }
 
 int main() {
-    SDL_Init(SDL_INIT_VIDEO);
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) return -1;
 
-    SDL_Window* window = SDL_CreateWindow("Pong - Persistent Leaderboard",
+    SDL_Window* window = SDL_CreateWindow("Pong - Multi-Entry Leaderboard",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     SDL_Rect p1 = { 50, HEIGHT/2 - 50, 20, 100 };
     SDL_Rect p2 = { WIDTH - 70, HEIGHT/2 - 50, 20, 100 };
     SDL_Rect ball = { WIDTH/2 - 10, HEIGHT/2 - 10, 20, 20 };
 
-    // --- 1. LOAD SAVED DATA ---
-    ScoreData scores = loadScores();
+    // Start with a fresh score for this specific session
+    ScoreData sessionScores = {0, 0};
     
-    // --- 2. LOWERED BALL SPEED ---
+    // --- DECREASED BALL SPEED ---
     int ballVelX = 2, ballVelY = 2;
 
-    updateConsoleScore(scores.p1, scores.p2);
+    updateConsoleScore(sessionScores.p1, sessionScores.p2);
 
     bool running = true;
     while (running) {
@@ -86,28 +76,31 @@ int main() {
         ball.x += ballVelX;
         ball.y += ballVelY;
 
+        // Wall Collision
         if (ball.y <= 0 || ball.y >= HEIGHT - ball.h)
             ballVelY = -ballVelY;
 
+        // Paddle Collision
         if (SDL_HasIntersection(&ball, &p1) || SDL_HasIntersection(&ball, &p2))
             ballVelX = -ballVelX;
 
-        // --- 3. SCORING & SAVING ---
+        // Scoring Logic
         if (ball.x < 0) {
-            scores.p2++;
-            saveScores(scores); // Save to .bin file
-            updateConsoleScore(scores.p1, scores.p2);
+            sessionScores.p2++;
+            saveScores(sessionScores); // Writes a new 8-byte entry to the file
+            updateConsoleScore(sessionScores.p1, sessionScores.p2);
             ball = { WIDTH/2 - 10, HEIGHT/2 - 10, 20, 20 };
             ballVelX = 2; 
         }
         if (ball.x > WIDTH) {
-            scores.p1++;
-            saveScores(scores); // Save to .bin file
-            updateConsoleScore(scores.p1, scores.p2);
+            sessionScores.p1++;
+            saveScores(sessionScores); // Writes a new 8-byte entry to the file
+            updateConsoleScore(sessionScores.p1, sessionScores.p2);
             ball = { WIDTH/2 - 10, HEIGHT/2 - 10, 20, 20 };
             ballVelX = -2;
         }
 
+        // Render
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

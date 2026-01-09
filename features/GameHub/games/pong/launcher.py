@@ -4,74 +4,74 @@ import struct
 import time
 
 def get_paths():
-    # Using __file__ ensures paths work even when called via runpy
+    # Dynamic pathing for runpy compatibility
     current_dir = os.path.dirname(os.path.abspath(__file__))
     exe_path = os.path.join(current_dir, "pong.exe")
     data_path = os.path.join(".\system_files", "pong_scoreboard.bin")
     return exe_path, data_path
 
 def view_data(data_path):
-    print("\n" + "="*30)
-    print("      LIFETIME SCORES")
+    # This function now blocks with an input() to prevent flashing
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("="*30)
+    print("      HISTORIC PLAY DATA")
     print("="*30)
     
     if os.path.exists(data_path):
         try:
             with open(data_path, "rb") as f:
-                # 'ii' = two 4-byte integers (Player 1, Player 2)
-                raw_data = f.read(8)
-                if len(raw_data) == 8:
-                    p1_score, p2_score = struct.unpack('ii', raw_data)
-                    print(f" Player 1: {p1_score} points")
-                    print(f" Player 2: {p2_score} points")
-                else:
-                    print(" [!] Save file format is invalid.")
+                entry_num = 1
+                while True:
+                    raw_bytes = f.read(8)
+                    if not raw_bytes or len(raw_bytes) < 8:
+                        break
+                    p1, p2 = struct.unpack('ii', raw_bytes)
+                    print(f" Match {entry_num:03}: P1 [{p1}] | P2 [{p2}]")
+                    entry_num += 1
         except Exception as e:
-            print(f" [!] Error reading file: {e}")
+            print(f" Error: {e}")
     else:
-        print(" [i] No saved data found yet.")
+        print(" No saved entries found.")
     
     print("="*30)
-    input("\nPress Enter to return to menu...") # Keeps the data on screen
+    input("\nPAUSED: Press Enter to return to menu...")
 
 def menu():
     exe_path, data_path = get_paths()
     
-    while True:
-        # Clear console for a clean menu look
+    while True: # Keep the menu alive
         os.system('cls' if os.name == 'nt' else 'clear')
+        print("--- PONG LAUNCHER MENU ---")
+        print("1. Launch Game")
+        print("2. View All Saved Entries")
+        print("3. Exit to Main Script")
         
-        print("=== PONG MASTER INTERFACE ===")
-        print("1. Start Pong (pong.exe)")
-        print("2. View Saved Play Data")
-        print("3. Return to Main Script")
-        
-        choice = input("\nSelect Option: ")
+        choice = input("\nSelect (1-3): ")
 
         if choice == '1':
             if os.path.exists(exe_path):
-                print(f"\n[SYSTEM] Launching {exe_path}...")
+                print("\nLaunching... Close game window to return.")
                 subprocess.run([exe_path])
             else:
-                print(f"\n[ERROR] {exe_path} not found!")
+                print(f"\nError: {exe_path} missing.")
                 time.sleep(2)
         
         elif choice == '2':
-            view_data(data_path)
+            view_data(data_path) # Goes to the blocking view_data function
             
         elif choice == '3':
-            print("\nReturning to original script...")
-            break # This allows runpy to finish and return to caller
+            print("\nReturning to caller...")
+            break # This is the ONLY way to exit back to your runpy script
         
         else:
-            print("\nInvalid selection!")
+            print("\nInvalid input.")
             time.sleep(1)
 
-# This check ensures it runs whether called directly or via runpy
-if __name__ == "__main__" or __name__ == "run_path_name":
+# Critical: This ensures the menu starts whether run directly or via runpy
+if __name__ == "__main__":
     menu()
 else:
-    # If runpy is used, it usually executes the module code directly
+    # This handles the runpy case where __name__ might change
     menu()
 
 """
