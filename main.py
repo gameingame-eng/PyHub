@@ -71,7 +71,7 @@ def main():
         try:
             if choice == "k":
                 toggle_music()
-                continue # Refresh the menu to show updated status
+                continue 
             elif choice == "1":
                 runpy.run_path(resource_path(os.path.join("features", "calculator.py")), run_name="__main__")
             elif choice == "2":
