@@ -61,8 +61,9 @@ def main():
         print("3. PySpelling")
         print("4. PassGen")
         print("5. System Stats")
-        print("6. User Data Management")
-        print("7. Exit")
+        print("6. GradeApp")
+        print("7. User Data Management")
+        print("8. Exit")
         print(f"--- Music: {'OFF' if music_paused else 'ON'} (Press 'k' + Enter to toggle) ---")
         print("----Thank you to lkoliks for the background music-----")
 
@@ -78,15 +79,18 @@ def main():
                 runpy.run_path(resource_path(os.path.join("features", "GameHub", "games.py")), run_name="__main__")
             elif choice == "3":
                 runpy.run_path(resource_path(os.path.join("features", "PySpelling", "dictionary.py")), run_name="__main__")
-            elif choice == "6":
-                runpy.run_path(resource_path("dat.py"), run_name="__main__")
             elif choice == "7":
+                runpy.run_path(resource_path("dat.py"), run_name="__main__")
+            elif choice == "8":
                 break
             elif choice == "4":
                 runpy.run_path(resource_path(os.path.join("features", "PassGen", "passgen.py")), run_name="__main__")
             elif choice == "5":
-                # This calls your compiled C# executable
                 stats_path = resource_path(os.path.join("features", "cStats", "Stats.exe"))
+            elif choice == "6":
+                launcher_path = resource_path(os.path.join("features", "GradeApp", "launcher.py"))
+                runpy.run_path(launcher_path, run_name="__main__")
+
                 
                 # Use subprocess.run to wait for the user to finish viewing stats
                 sub.run(stats_path, check=True)
