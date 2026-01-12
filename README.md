@@ -40,7 +40,9 @@ python3 main.py
 
 __Python 3.12.10__
 
-__No__ external dependencies (unless you add them)
+__JDK 11__ or higher
+
+This project uses **XChart** for the java GradeApp feature. The .jar is in this repo in __*features/GradeApp/lib*__
 
 **Pull requests are welcome.** For major changes, please __*open an issue*__ first to discuss what you'd like to modify.
 
