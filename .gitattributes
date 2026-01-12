@@ -1,4 +1,5 @@
 *.html linguist-detectable=false
+*.css linguist-language=HTML
 LICENSE linguist-language=Markdown
 # 1. Handle line endings automatically for all files
 * text=auto
