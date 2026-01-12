@@ -2,6 +2,7 @@
 *.css linguist-language=HTML
 run.cmd linguist-language=Python
 run.sh linguist-language=Python
+requirements.txt linguist-language=Python
 LICENSE linguist-language=Markdown
 # 1. Handle line endings automatically for all files
 * text=auto
