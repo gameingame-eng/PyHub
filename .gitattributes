@@ -27,6 +27,7 @@ LICENSE linguist-language=Markdown
 *.sqlite   binary
 *.pkl      binary
 *.pickle   binary
+*.bin      binary
 
 # 5. Graphics/Assets
 *.png      binary
@@ -38,6 +39,8 @@ LICENSE linguist-language=Markdown
 # 6. Windows-specific scripts - force CRLF so they run correctly on Windows
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
+# Because the Pythoon scripts are generating .bin files, i will mark those .bin files as Python
+*.bin linguist-language=Python
 
 
 
