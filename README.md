@@ -51,8 +51,6 @@ There are multiple ways to run this project
 
 ### On Windows
 
-There are __three__ ways to run this project on Windows.
-
 #### 1. command file (fastest and simplest)
 <br>
 Just double-click on the `run.cmd` file in the root dir and it should run the project.
