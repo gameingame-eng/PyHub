@@ -55,28 +55,6 @@ There are __three__ ways to run this project on Windows.
 <br>
 Just double-click on the `run.cmd` file in the root dir and it should run the project.
 <br>
-
-#### 2. CLI (fast but a little complicated)
-
-Open __Terminal__ or __PowerShell__
-
-1. cd into this dir
-```bash
-cd path/to/cloned/repo
-```
-2. cd one more time into the __main__ dir
-```bash
-cd ./dist/main
-```
-3. run main.exe
-```bash
-./main.exe
-```
-<br>
-
-#### 3. EXE file (slow but easy)
-In your file explorer, go to ./dist/main and double click the exe file. this may take some time, but it is easy.
-
 ### If you are on Linux or MacOS, Your OS is not supported yet. your best option is to take the src code, `cd` into the dir, and use `python3 main.py`.
 
 #### I am really sorry for the inconvenience and i will add MacOS and Linux soon! 

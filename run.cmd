@@ -23,9 +23,9 @@ echo.
 echo Installing required Python packages from requirements.txt...
 
 :: Show pip commands while running
-echo on
+
 echo by the way, thank you for using PyHub!
-python -m pip install --upgrade pip
+echo on
 python -m pip install -r requirements.txt
 @echo off
 

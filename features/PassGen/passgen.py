@@ -6,8 +6,10 @@ https://creativecommons.org/licenses/by-nc/4.0/
 import random
 import string
 import runpy as run
+import time as t
 def back_to_main():
   print("Returning to PyHub")
+  t.sleep(3)  # Pause before returning to main menu
   print(".")
   run.run_path("./main.py")
 def get_user_input():

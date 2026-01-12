@@ -85,3 +85,4 @@ def spell_checker_tool():
 
         input("\nPress Enter to continue...")
 spell_checker_tool()
+

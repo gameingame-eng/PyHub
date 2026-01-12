@@ -14,10 +14,14 @@ import sys
 # 1. This function stays here so the EXE knows how to find its internal files
 def resource_path(relative_path):
     try:
+        # If running as an EXE (PyInstaller)
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
+        # If running as a script, get the folder containing THIS script
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    
     return os.path.join(base_path, relative_path)
+
 
 
 def clear_screen():
@@ -58,7 +62,8 @@ def games_menu():
         print("---  PyHub Games Menu  ---")
         print("1. Snow Rider 3D")
         print("2. Drive Mad")
-        print("3. Back to Main Menu")
+        print("3. Pong")
+        print("4. Return to Main Menu")
         print("------------------------------")
 
         choice = input("Select a game to play: ")
@@ -69,18 +74,18 @@ def games_menu():
             launch_game("Drive_mad")
         elif choice == "4":
             print("Returning...")
-            # Instead of runpy back to main (which creates a loop),
-            # we just 'return' to go back to where we were called from
             return
         elif choice == "3":
-            run.run_path("games/pong/launcher.py")
+            # Construct the absolute path using your resource_path function
+            pong_path = resource_path(os.path.join("games", "pong", "launcher.py"))
+            
+            if os.path.exists(pong_path):
+                run.run_path(pong_path)
+            else:
+                print(f"Error: Launcher not found at {pong_path}")
+                time.sleep(2)
+
         else:
             print("Invalid selection. Try again.")
             time.sleep(1)
-
-
-# 3. THIS IS THE FIX for the 'automatic launching'
-# It tells Python: Only run games_menu() if I double-click games.py.
-# If main.py imports me, stay quiet.
-
 games_menu()
