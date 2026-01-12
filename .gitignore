@@ -5,4 +5,11 @@
 /build
 main.spec
 # pycache
-/features/GameHub/__pycache__
+__pycache__
+*.pyc
+.github/hi.s
+features/GameHub/games/pong/resource.res
+features/GameHub/games/pong/pong.exe
+features/cStats/Stats.exe
+dist
+

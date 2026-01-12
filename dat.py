@@ -3,13 +3,18 @@ import os
 from pathlib import Path
 import runpy as run
 import time as t
-def nameupd():
-    print("I currently have your name locally saved as:")
-    print(name)
-    updateornot = input("Would you like to update it (Y/N)? ")
-    return updateornot
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
+# Globals
+name = None
+name_found = False
+
 def get_stored_name():
-    # Define the path
+    global name, name_found
+
     ROOT = Path(__file__).parent
     folder = ROOT / "system_files"
     filename = folder / "username.bin"
@@ -19,35 +24,38 @@ def get_stored_name():
             with open(filename, "rb") as file:
                 encoded_data = file.read()
                 name = b64.b64decode(encoded_data).decode("utf-8")
-                return name
+                name_found = True
         except Exception:
-            return None
-    return None
-    return name
+            name_found = False
+    else:
+        name_found = False
+
+def nameupd():
+    if name_found:
+        print("I currently have your name locally saved as:")
+        print(name)
+        return input("Would you like to update it (Y/N)? ")
+    else:
+        print("I do not have your name saved.")
+        return input("Would you like to save it (Y/N)? ")
 
 def update_username():
-    # 1. Setup paths
     ROOT = Path(__file__).parent
     folder = ROOT / "system_files"
     filename = folder / "username.bin"
 
-    # 2. Get the new name
     new_name = input("Enter the new name you want to save: ").strip()
 
     if not new_name:
         print("Error: Name cannot be empty.")
         return
 
-    # 3. Ensure the folder exists
     if not os.path.exists(folder):
         os.makedirs(folder)
         print(f"Created directory: {folder}")
 
     try:
-        # 4. Encode to Base64 (to match your existing system)
         encoded_name = b64.b64encode(new_name.encode("utf-8"))
-
-        # 5. Write to the file
         with open(filename, "wb") as file:
             file.write(encoded_name)
 
@@ -57,14 +65,21 @@ def update_username():
 
     except Exception as e:
         print(f" An error occurred: {e}")
-name = get_stored_name()
-print(f"Hello, {name}")
+
+# ---- Program flow ----
+get_stored_name()
+
+print("Hello!")
 print("---------------")
+
 updateornot = nameupd()
+
 if updateornot.lower() == "y":
     update_username()
     print("Task complete, returning to PyHub....")
+    t.sleep(1)
     run.run_path("main.py")
+
 elif updateornot.lower() == "n":
     print("Returning to PyHub...")
     t.sleep(1)

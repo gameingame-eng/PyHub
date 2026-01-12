@@ -1,3 +1,8 @@
+"""
+© 2026 Lakshya.  
+Licensed under CC BY-NC 4.0.  
+https://creativecommons.org/licenses/by-nc/4.0/
+"""
 import json
 import os
 import difflib
@@ -80,3 +85,4 @@ def spell_checker_tool():
 
         input("\nPress Enter to continue...")
 spell_checker_tool()
+
