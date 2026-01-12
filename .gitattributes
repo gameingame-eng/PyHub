@@ -1,5 +1,6 @@
 *.html linguist-detectable=false
 *.css linguist-language=HTML
+run.cmd linguist-language=Python
 LICENSE linguist-language=Markdown
 # 1. Handle line endings automatically for all files
 * text=auto
