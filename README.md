@@ -32,6 +32,10 @@ Run the project
 ```bash
 python3 main.py
 ```
+**or if on windows**
+```powershell
+.\run.cmd
+```
 
 ### For more information, please refer to .github/CONTRIBUTING
 
@@ -40,9 +44,7 @@ python3 main.py
 
 __Python 3.12.10__
 
-__JDK 11__ or higher
-
-This project uses **XChart** for the java GradeApp feature. The .jar is in this repo in __*features/GradeApp/lib*__
+__No__ external dependencies (unless you add them)
 
 **Pull requests are welcome.** For major changes, please __*open an issue*__ first to discuss what you'd like to modify.
 
@@ -50,6 +52,8 @@ This project uses **XChart** for the java GradeApp feature. The .jar is in this 
 There are multiple ways to run this project
 
 ### On Windows
+
+There are __three__ ways to run this project on Windows.
 
 #### 1. command file (fastest and simplest)
 <br>
