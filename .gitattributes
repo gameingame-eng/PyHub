@@ -47,6 +47,7 @@ LICENSE linguist-language=Markdown
 
 .jar linguist-language=Java
 features/GameHub/games/snowrider.html linguist-detectable=true
+favicon.ico linguist-language=C++
 
 
 
