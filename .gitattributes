@@ -28,6 +28,7 @@ LICENSE linguist-language=Markdown
 *.pkl      binary
 *.pickle   binary
 *.bin      binary
+*.jar      binary
 
 # 5. Graphics/Assets
 *.png      binary
@@ -43,7 +44,7 @@ LICENSE linguist-language=Markdown
 *.bin linguist-language=Python
 
 
-
+.jar linguist-language=Java
 features/GameHub/games/snowrider.html linguist-detectable=true
 
 
