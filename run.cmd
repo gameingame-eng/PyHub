@@ -9,6 +9,17 @@ if errorlevel 1 (
     pause
     exit /b
 )
+echo Checking Java installation...
+where java >nul 2>&1
+if %errorlevel% equ 0 (
+    set "JAVA_STATUS=True"
+    echo Java found.
+) else (
+    set "JAVA_STATUS=False"
+    echo WARNING: YOU CANNOT USE GradeApp, a PyHub feature WITHOUT AN AVAILABLE JAVA INSTALLATION.
+    echo It is recommended you do get java
+    echo but it is not required unless you would like to use GradeApp
+)
 
 echo.
 echo Checking for requirements.txt...
@@ -31,8 +42,7 @@ python -m pip install -r requirements.txt
 
 echo.
 echo Running PyHub...
-echo on
-python main.py
+python main.py %JAVA_STATUS%
 @echo off
 
 echo.

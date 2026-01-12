@@ -12,4 +12,4 @@ features/GameHub/games/pong/resource.res
 features/GameHub/games/pong/pong.exe
 features/cStats/Stats.exe
 dist
-
+.vscode/c_cpp_properties.json
