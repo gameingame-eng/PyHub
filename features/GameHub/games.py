@@ -63,7 +63,8 @@ def games_menu():
         print("1. Snow Rider 3D")
         print("2. Drive Mad")
         print("3. Pong")
-        print("4. Return to Main Menu")
+        print("4. Snake")
+        print("5. Return to Main Menu")
         print("------------------------------")
 
         choice = input("Select a game to play: ")
@@ -72,7 +73,7 @@ def games_menu():
             launch_game("snowrider")
         elif choice == "2":
             launch_game("Drive_mad")
-        elif choice == "4":
+        elif choice == "5":
             print("Returning...")
             return
         elif choice == "3":
@@ -84,7 +85,14 @@ def games_menu():
             else:
                 print(f"Error: Launcher not found at {pong_path}")
                 time.sleep(2)
-
+        elif choice == "4":
+            snake_path = resource_path(os.path.join("games", "snake", "snake.py"))
+            
+            if os.path.exists(snake_path):
+                run.run_path(snake_path)
+            else:
+                print(f"Error: Launcher not found at {snake_path}")
+                time.sleep(2)
         else:
             print("Invalid selection. Try again.")
             time.sleep(1)
