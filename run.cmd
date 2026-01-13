@@ -20,8 +20,7 @@ if %errorlevel% equ 0 (
     echo It is recommended you do get java
     echo but it is not required unless you would like to use GradeApp
 )
-echo Scanning for new imports and updating requiremnts.txt...
-python requirements_gen.py
+
 
 echo.
 echo Checking for requirements.txt...
