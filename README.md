@@ -32,6 +32,10 @@ Run the project
 ```bash
 python3 main.py
 ```
+**or if on windows**
+```powershell
+.\run.cmd
+```
 
 ### For more information, please refer to .github/CONTRIBUTING
 
@@ -55,6 +59,7 @@ There are __three__ ways to run this project on Windows.
 <br>
 Just double-click on the `run.cmd` file in the root dir and it should run the project.
 <br>
+
 ### If you are on Linux or MacOS, Your OS is not supported yet. your best option is to take the src code, `cd` into the dir, and use `python3 main.py`.
 
 #### I am really sorry for the inconvenience and i will add MacOS and Linux soon! 
