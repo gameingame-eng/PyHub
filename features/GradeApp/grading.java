@@ -20,7 +20,7 @@ import org.knowm.xchart.style.Styler;
 public class grading {
 
     // CSV file path
-    private static final String CSV_FILE = "gradeinput.csv";
+    private static final String CSV_FILE = "system_files/gradeinput.csv";
 
     // Global map for fixed category weights (Major 60%, Minor 40%)
     private static final Map<String, Double> WEIGHT_CONFIG = Map.of(
@@ -37,6 +37,7 @@ public class grading {
     private static JFrame mainFrame;
     private static JTextArea resultArea;
     private static JComboBox<String> subjectDropdown;
+
 
     public static void main(String[] args) {
         // Set System Look and Feel for a native appearance (which is typically light)
@@ -479,60 +480,62 @@ public class grading {
      * Shows a horizontal bar chart tracking grade progress over time.
      */
     private static void showChart() {
-        String selectedSubject = (String) subjectDropdown.getSelectedItem();
-        if (selectedSubject == null || !allGrades.containsKey(selectedSubject)) {
-            JOptionPane.showMessageDialog(mainFrame, "No grades available to chart for this subject.", "Chart Error", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        List<GradeItem> subjectGrades = allGrades.get(selectedSubject);
-        subjectGrades.sort(Comparator.comparing(item -> LocalDate.parse(item.date)));
-
-        List<String> labels = new ArrayList<>();
-        List<Double> percentages = new ArrayList<>();
-
-        for (GradeItem item : subjectGrades) {
-            labels.add(item.name + " (" + item.date + ")");
-            percentages.add(((double) item.score / item.outOf) * 100.0);
-        }
-
-        if (labels.isEmpty()) {
-            JOptionPane.showMessageDialog(mainFrame, "No grades available to chart for this subject.", "Chart Error", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        CategoryChart chart = new CategoryChartBuilder()
-                .width(1000)
-                .height(700)
-                .title("Grade Progress: " + selectedSubject)
-                .xAxisTitle("Score Percentage (%)")
-                .yAxisTitle("Assignment")
-                .build();
-
-        chart.getStyler().setLegendVisible(false);
-        chart.getStyler().setPlotGridLinesVisible(true);
-        chart.getStyler().setPlotContentSize(0.9);
-        chart.getStyler().setPlotMargin(0);
-        chart.getStyler().setChartBackgroundColor(UIManager.getColor("control"));
-        chart.getStyler().setPlotBackgroundColor(Color.LIGHT_GRAY);
-        chart.getStyler().setPlotBorderVisible(false);
-        chart.getStyler().setAxisTickLabelsColor(Color.BLACK);
-        chart.getStyler().setAxisTitleColor(Color.BLACK);
-        chart.getStyler().setChartTitleBoxVisible(false);
-        chart.getStyler().setPlotOrientation(Styler.PlotOrientation.Horizontal);
-        chart.getStyler().setXAxisMin(0.0);
-        chart.getStyler().setXAxisMax(100.0);
-
-        chart.addSeries("Assignment Score", percentages, labels);
-
-        JFrame chartFrame = new JFrame("Progress Chart: " + selectedSubject);
-        chartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        XChartPanel<CategoryChart> chartPanel = new XChartPanel<>(chart);
-        chartFrame.setContentPane(chartPanel);
-        chartFrame.pack();
-        chartFrame.setLocationRelativeTo(mainFrame);
-        chartFrame.setVisible(true);
+    String selectedSubject = (String) subjectDropdown.getSelectedItem();
+    if (selectedSubject == null || !allGrades.containsKey(selectedSubject)) {
+        JOptionPane.showMessageDialog(mainFrame,
+                "No grades available to chart for this subject.",
+                "Chart Error", JOptionPane.WARNING_MESSAGE);
+        return;
     }
+
+    List<GradeItem> subjectGrades = allGrades.get(selectedSubject);
+    subjectGrades.sort(Comparator.comparing(item -> LocalDate.parse(item.date)));
+
+    List<String> labels = new ArrayList<>();
+    List<Double> percentages = new ArrayList<>();
+
+    for (GradeItem item : subjectGrades) {
+        labels.add(item.name + " (" + item.date + ")");
+        percentages.add(((double) item.score / item.outOf) * 100.0);
+    }
+
+    if (labels.isEmpty()) {
+        JOptionPane.showMessageDialog(mainFrame,
+                "No grades available to chart for this subject.",
+                "Chart Error", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    CategoryChart chart = new CategoryChartBuilder()
+            .width(1000)
+            .height(700)
+            .title("Grade Progress: " + selectedSubject)
+            .xAxisTitle("Assignment")
+            .yAxisTitle("Score (%)")
+            .build();
+
+    chart.getStyler().setLegendVisible(false);
+    chart.getStyler().setPlotGridLinesVisible(true);
+    chart.getStyler().setPlotContentSize(0.9);
+    chart.getStyler().setPlotMargin(0);
+    chart.getStyler().setChartBackgroundColor(UIManager.getColor("control"));
+    chart.getStyler().setPlotBackgroundColor(Color.LIGHT_GRAY);
+    chart.getStyler().setPlotBorderVisible(false);
+    chart.getStyler().setAxisTickLabelsColor(Color.BLACK);
+    chart.getStyler().setChartTitleBoxVisible(false);
+
+    // Correct order for 3.8.8: xData = labels, yData = percentages
+    chart.addSeries("Assignment Score", labels, percentages);
+
+    JFrame chartFrame = new JFrame("Progress Chart: " + selectedSubject);
+    chartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    XChartPanel<CategoryChart> chartPanel = new XChartPanel<>(chart);
+    chartFrame.setContentPane(chartPanel);
+    chartFrame.pack();
+    chartFrame.setLocationRelativeTo(mainFrame);
+    chartFrame.setVisible(true);
+}
+
 
     // ---------------- Grade Calculation ----------------
     private static String computeGrade(int mark) {

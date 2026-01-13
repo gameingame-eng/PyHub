@@ -10,7 +10,8 @@ lib_path = os.path.join("features", "GradeApp", "lib", "xchart-3.8.8.jar")
 def run_java():
     # Automatically handles Windows (;) vs Linux/macOS (:)
     separator = ";" if os.name == 'nt' else ":"
-    classpath = f".{separator}{lib_path}"
+    classpath = f".{separator}features{os.sep}GradeApp{separator}{lib_path}"
+
 
     try:
         # 1. Compile

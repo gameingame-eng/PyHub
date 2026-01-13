@@ -69,7 +69,8 @@ def main():
             print("6. GradeApp")
         elif Java_Found == False:
             print("6. GradeApp - Will not work as java is not install on this machine")
-        else
+        else:
+            print("6. GradeApp")
         print("7. User Data Management")
         print("8. Exit")
         print(f"--- Music: {'OFF' if music_paused else 'ON'} (Press 'k' + Enter to toggle) ---")
