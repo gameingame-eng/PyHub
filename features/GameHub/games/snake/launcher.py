@@ -15,5 +15,5 @@ with open("system_files/snakescore.bin", "wb") as f:
     f.write(score.encode("utf-8"))
 
 print("Snake score saved:", score)
-
+input("Press Enter to exit...")
 

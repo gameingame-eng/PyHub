@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 import runpy as run
 import sys
+import subprocess
 
 
 # 1. This function stays here so the EXE knows how to find its internal files
@@ -89,7 +90,7 @@ def games_menu():
             snake_path = resource_path(os.path.join("games", "snake", "snake.py"))
             
             if os.path.exists(snake_path):
-                run.run_path(snake_path)
+                subprocess.run([sys.executable, "features/GameHub/games/snake/snake.py"])
             else:
                 print(f"Error: Launcher not found at {snake_path}")
                 time.sleep(2)

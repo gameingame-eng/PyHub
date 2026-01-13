@@ -2,6 +2,23 @@ import pygame
 import random
 import os
 import sys
+import struct
+
+def save_snake_score(score):
+    path = os.path.join("system_files", "snake.bin")
+
+    # Ensure the folder exists
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+
+    # Append the score as a 4‑byte integer
+    with open(path, "ab") as f:
+        f.write(struct.pack("i", score))
+def show_game_over(score):
+    font = pygame.font.SysFont(None, 48)
+    text = font.render(f"Game Over! Score: {score}", True, (255, 0, 0))
+    screen.blit(text, (100, 250))
+    pygame.display.flip()
+    pygame.time.wait(2000)
 
 pygame.init()
 
@@ -44,8 +61,9 @@ def snake_game():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                show_game_over(score)
                 pygame.quit()
-                sys.exit()
+                return score
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP and direction != (0, 1):
@@ -90,6 +108,9 @@ def snake_game():
         pygame.display.flip()
         clock.tick(10)  # speed
 
-
-print(snake_game())
+score = snake_game()
+save_snake_score(score)
+print(f"Score is currently {score}!")
+pygame.quit()
+input("Press Enter to exit...")
 

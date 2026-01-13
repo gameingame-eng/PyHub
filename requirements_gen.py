@@ -7,6 +7,29 @@ import importlib.util
 # -----------------------------
 # Detect standard library modules
 # -----------------------------
+# -----------------------------
+# Filter out stdlib + local modules
+# -----------------------------
+def filter_external(imports):
+    external = set()
+    # Define a mapping for imports that differ from their pip package names
+    PACKAGE_MAPPING = {
+        "webview": "pywebview",
+        # You can add others here, e.g., "cv2": "opencv-python"
+    }
+
+    for module in imports:
+        if module in STDLIB:
+            continue
+        if os.path.isdir(module):
+            continue
+            
+        # Swap the name if it's in our mapping, otherwise keep original
+        module_name = PACKAGE_MAPPING.get(module, module)
+        external.add(module_name)
+        
+    return external
+
 def get_stdlib_modules():
     stdlib = set(sys.builtin_module_names)
     for _, name, _ in pkgutil.iter_modules():
@@ -76,7 +99,7 @@ if __name__ == "__main__":
     print("\nDetected external dependencies:\n")
     for dep in external:
         print(dep)
-
+    filter_external(imports)
     # Write to requirements.txt
     with open("requirements.txt", "w", encoding="utf-8") as f:
         for dep in external:
