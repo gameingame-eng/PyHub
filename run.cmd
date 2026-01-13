@@ -21,6 +21,7 @@ if %errorlevel% equ 0 (
     echo but it is not required unless you would like to use GradeApp
 )
 
+
 echo.
 echo Checking for requirements.txt...
 if not exist requirements.txt (
