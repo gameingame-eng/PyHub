@@ -24,10 +24,12 @@ BLACK = (0, 0, 0)
 APPLE_PATH = os.path.join(
     "features", "GameHub", "games", "snake", "img", "apple.png"
 )
-
-apple_img = pygame.image.load(APPLE_PATH).convert_alpha()
-apple_img = pygame.transform.scale(apple_img, (CELL, CELL))  # auto-fit 255→20px
-
+try:
+    apple_img = pygame.image.load(APPLE_PATH).convert_alpha()
+    apple_img = pygame.transform.scale(apple_img, (CELL, CELL))  
+except Exception as e:
+    print("APPLE LOAD ERROR:", e)
+    apple_img = None
 
 def draw_rect(color, pos):
     pygame.draw.rect(screen, color, (pos[0] * CELL, pos[1] * CELL, CELL, CELL))
@@ -89,4 +91,5 @@ def snake_game():
         clock.tick(10)  # speed
 
 
-print("Score:", snake_game())
+print(snake_game())
+
