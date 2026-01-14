@@ -1,5 +1,3 @@
-
-
 # auto generated files by the python script
 /system_files
 /features/system_files/
@@ -18,3 +16,5 @@ dist
 *.class
 features/GradeApp/gradeinput.csv
 .idea
+features/CrossWordGen/crossword.json
+features/CrossWordGen/crossword.exe
