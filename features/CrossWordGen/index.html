@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .grid { display: grid; grid-template-columns: repeat(5, 50px); gap: 2px; background: #333; }
+        .cell { width: 50px; height: 50px; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="crossword" class="grid"></div>
+
+    <script>
+        // Example: In a real PyHub setup, Python would pass the C++ output to this JS
+        const data = {"grid": [["P","Y","H","U","B"],["Y"," "," "," "," "],["H"," "," "," "," "],["U"," "," "," "," "],["B"," "," "," "," "]]};
+        
+        const container = document.getElementById('crossword');
+        data.grid.forEach(row => {
+            row.forEach(char => {
+                const div = document.createElement('div');
+                div.className = 'cell';
+                div.innerText = char;
+                container.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
