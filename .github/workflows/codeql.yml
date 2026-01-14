@@ -27,7 +27,8 @@ jobs:
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.os }}
+
     permissions:
       # required for all workflows
       security-events: write
@@ -47,14 +48,19 @@ jobs:
           build-mode: none
         - language: c-cpp
           build-mode: none
+          os: ubuntu-latest
         - language: csharp
           build-mode: autobuild
+          os: windows-latest
         - language: java-kotlin
           build-mode: none # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
+          os: ubuntu-latest
         - language: javascript-typescript
           build-mode: none
+          os: ubuntu-latest
         - language: python
           build-mode: none
+          os: ubuntu-latest
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
