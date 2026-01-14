@@ -6,6 +6,7 @@ GameHub:
     - any-glob-to-any-file: 'features/GameHub/**/*'
 GradeApp:
   - changed-files:
-    - any-glob-to-any-file: 'features/GradeApp'
-#git:
-#  - changed
+    - any-glob-to-any-file: 'features/GradeApp/**/*'
+git:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**/*'
