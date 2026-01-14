@@ -18,3 +18,4 @@ dist
 *.class
 features/GradeApp/gradeinput.csv
 .idea
+features/CrossWordGen/crossword.json
