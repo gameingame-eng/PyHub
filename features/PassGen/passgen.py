@@ -9,7 +9,9 @@ import runpy as run
 import time as t
 def back_to_main():
   print("Returning to PyHub")
-  t.sleep(3)  # Pause before returning to main menu
+  t.sleep(3) 
+  print(".")
+  t.sleep(0.1)
   print(".")
   run.run_path("./main.py")
 def get_user_input():

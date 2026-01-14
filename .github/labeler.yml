@@ -13,3 +13,7 @@ GradeApp:
 git:
     - changed-files:
         - any-glob-to-any-file: '.github/**/*'
+
+PassGen:
+    - changed-files:
+        - any-glob-to-any-file: 'features/PassGen/**/*'
