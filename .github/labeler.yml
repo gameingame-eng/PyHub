@@ -7,4 +7,5 @@ GameHub:
 GradeApp:
   - changed-files:
     - any-glob-to-any-file: 'features/GradeApp'
-    
+#git:
+#  - changed
