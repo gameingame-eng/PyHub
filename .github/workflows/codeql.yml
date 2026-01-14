@@ -46,6 +46,7 @@ jobs:
         include:
         - language: actions
           build-mode: none
+          os: ubuntu-latest
         - language: c-cpp
           build-mode: none
           os: ubuntu-latest
