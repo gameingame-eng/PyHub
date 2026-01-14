@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '17 0 * * 1'
+    - cron: '17 0 * * *'
 
 jobs:
   analyze:
@@ -48,7 +48,7 @@ jobs:
         - language: c-cpp
           build-mode: none
         - language: csharp
-          build-mode: none
+          build-mode: autobuild
         - language: java-kotlin
           build-mode: none # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
         - language: javascript-typescript
