@@ -1,0 +1,3 @@
+feature:
+  - changed-files:
+      - any-glob-to-any-file: 'features/**/*'
