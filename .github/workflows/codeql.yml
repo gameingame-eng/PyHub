@@ -48,7 +48,7 @@ jobs:
         - language: c-cpp
           build-mode: none
         - language: csharp
-          build-mode: autobuild
+          build-mode: manual
         - language: java-kotlin
           build-mode: none # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
         - language: javascript-typescript
