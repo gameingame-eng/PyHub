@@ -1,3 +1,10 @@
 feature:
   - changed-files:
       - any-glob-to-any-file: 'features/**/*'
+GameHub:
+  - changed-files:
+    - any-glob-to-any-file: 'features/GameHub/**/*'
+GradeApp:
+  - changed-files:
+    - any-glob-to-any-file: 'features/GradeApp'
+    
