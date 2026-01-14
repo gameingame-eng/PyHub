@@ -19,3 +19,4 @@ dist
 features/GradeApp/gradeinput.csv
 .idea
 features/CrossWordGen/crossword.json
+features/CrossWordGen/crossword.exe
