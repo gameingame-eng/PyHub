@@ -65,6 +65,7 @@ def games_menu():
         print("2. Drive Mad")
         print("3. Pong")
         print("4. Snake")
+        print("     4.1: Snake scores")
         print("5. Return to Main Menu")
         print("------------------------------")
 
@@ -94,7 +95,39 @@ def games_menu():
             else:
                 print(f"Error: Launcher not found at {snake_path}")
                 time.sleep(2)
+        elif choice == "4.1":
+            import struct
+            snake_scores_path = resource_path(os.path.join("..", "..", "system_files", "snake.bin"))
+            
+            if os.path.exists(snake_scores_path):
+                try:
+                    scores = []
+                    with open(snake_scores_path, 'rb') as f:
+                        while True:
+                            byte_data = f.read(4)
+                            if not byte_data:
+                                break
+                            score = struct.unpack("i", byte_data)[0]
+                            scores.append(score)
+                    
+                    clear_screen()
+                    print("---  Snake Game Scores  ---")
+                    if scores:
+                        for i, score in enumerate(scores, 1):
+                            print(f"{i}. {score}")
+                    else:
+                        print("No scores yet!")
+                    print("------------------------------")
+                    input("Press Enter to continue...")
+                except Exception as e:
+                    print(f"Error reading scores: {e}")
+                    time.sleep(2)
+            else:
+                print(f"Error: Snake scores file not found at {snake_scores_path}")
+                time.sleep(2)
         else:
+
             print("Invalid selection. Try again.")
             time.sleep(1)
+
 games_menu()

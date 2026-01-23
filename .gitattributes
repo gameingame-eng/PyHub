@@ -41,7 +41,7 @@ LICENSE linguist-language=Markdown
 # 6. Windows-specific scripts - force CRLF so they run correctly on Windows
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
-# Because the Pythoon scripts are generating .bin files, i will mark those .bin files as Python
+# Because the Python scripts are generating .bin files, i will mark those .bin files as Python
 *.bin linguist-language=Python
 
 
