@@ -17,3 +17,8 @@ git:
 PassGen:
     - changed-files:
         - any-glob-to-any-file: 'features/PassGen/**/*'
+
+Snake:
+    - changed-files:
+        - any-glob-to-any-file: 'features/GameHub/games/snake/**/*'
+
