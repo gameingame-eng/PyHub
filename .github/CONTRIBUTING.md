@@ -13,7 +13,7 @@ First off, thank you for considering contributing to PyHub! It's people like you
 ## How Can I Contribute?
 
 ### Reporting Bugs
-Before creating bug reports, please search the [existing issues](github.com/gameingame-eng/PyHub/issues) to see if the problem has already been reported. When filing a bug, please include:
+Before creating bug reports, please search the [existing issues](https://github.com/gameingame-eng/PyHub/issues) to see if the problem has already been reported. When filing a bug, please include:
 * A clear, descriptive title.
 * Specific steps to reproduce the issue.
 * Expected vs. actual behavior.
