@@ -71,8 +71,9 @@ def main():
             print("6. GradeApp - Will not work as java is not install on this machine")
         else:
             print("6. GradeApp")
-        print("7. User Data Management")
-        print("8. Exit")
+        print("7. CrossWordGen")
+        print("8. User Data Management")
+        print("9. Exit")
         print(f"--- Music: {'OFF' if music_paused else 'ON'} (Press 'k' + Enter to toggle) ---")
         if Java_Found == True:
             print("")
@@ -96,9 +97,9 @@ def main():
                 runpy.run_path(resource_path(os.path.join("features", "GameHub", "games.py")), run_name="__main__")
             elif choice == "3":
                 runpy.run_path(resource_path(os.path.join("features", "PySpelling", "dictionary.py")), run_name="__main__")
-            elif choice == "7":
-                runpy.run_path(resource_path("dat.py"), run_name="__main__")
             elif choice == "8":
+                runpy.run_path(resource_path("dat.py"), run_name="__main__")
+            elif choice == "9":
                 break
             elif choice == "4":
                 runpy.run_path(resource_path(os.path.join("features", "PassGen", "passgen.py")), run_name="__main__")
@@ -111,6 +112,9 @@ def main():
                 else:
                     launcher_path = resource_path(os.path.join("features", "GradeApp", "__err__.py"))
                     runpy.run_path(launcher_path, run_name="__main__")
+            elif choice == "7":
+                runpy.run_path(resource_path(os.path.join("features", "CrossWordGen", "launcher.py")), run_name="__main__")
+            else:
 
                 
                 # Use subprocess.run to wait for the user to finish viewing stats

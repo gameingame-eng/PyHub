@@ -2,3 +2,4 @@ numpy
 plotext
 pygame
 pywebview
+pybind11
