@@ -13,7 +13,7 @@ First off, thank you for considering contributing to PyHub! It's people like you
 ## How Can I Contribute?
 
 ### Reporting Bugs
-Before creating bug reports, please search the [existing issues](github.com) to see if the problem has already been reported. When filing a bug, please include:
+Before creating bug reports, please search the [existing issues](github.com/gameingame-eng/PyHub/issues) to see if the problem has already been reported. When filing a bug, please include:
 * A clear, descriptive title.
 * Specific steps to reproduce the issue.
 * Expected vs. actual behavior.
@@ -27,8 +27,6 @@ Before creating bug reports, please search the [existing issues](github.com) to 
 5. Submit your PR with a detailed description of your changes.
 
 ## Style Guidelines
-* **Python Style**: Follow [PEP 8](peps.python.org) standards.
-* **Docstrings**: Use [Google-style docstrings](google.github.io) for all new modules and functions.
 * **Commits**: Use the imperative mood in commit messages (e.g., `feat: add login functionality`).
 
 ## Setting Up Your Environment
@@ -40,5 +38,5 @@ cd PyHub
 
 ``` 
 Enjoy!
-Just so you know @242165-arch is my alt account
-For contact info, refer to SUPPORT.md
+**Just so you know @242165-arch is my alt account
+For contact info, refer to SUPPORT.md**
