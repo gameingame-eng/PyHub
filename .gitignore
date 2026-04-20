@@ -18,3 +18,16 @@ features/GradeApp/gradeinput.csv
 .idea
 features/CrossWordGen/crossword.json
 features/CrossWordGen/crossword.exe
+
+features/cStats/obj/project.assets.json
+features/cStats/obj/project.csproj.nuget.dgspec.json
+features/cStats/obj/project.csproj.nuget.g.props
+features/cStats/obj/project.csproj.nuget.g.targets
+features/cStats/obj/project.nuget.cache
+features/cStats/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+features/cStats/obj/Debug/net8.0/project.AssemblyInfo.cs
+features/cStats/obj/Debug/net8.0/project.AssemblyInfoInputs.cache
+features/cStats/obj/Debug/net8.0/project.assets.cache
+features/cStats/obj/Debug/net8.0/project.csproj.AssemblyReference.cache
+features/cStats/obj/Debug/net8.0/project.GeneratedMSBuildEditorConfig.editorconfig
+features/cStats/obj/Debug/net8.0/project.GlobalUsings.g.cs

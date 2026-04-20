@@ -1,3 +1,5 @@
+* text linguist-detectable=true
+*.json linguist-detectable=false
 *.html linguist-detectable=false
 *.css linguist-language=HTML
 run.cmd linguist-language=Python
@@ -41,7 +43,7 @@ LICENSE linguist-language=Markdown
 # 6. Windows-specific scripts - force CRLF so they run correctly on Windows
 *.bat      text eol=crlf
 *.cmd      text eol=crlf
-# Because the Pythoon scripts are generating .bin files, i will mark those .bin files as Python
+# Because the Python scripts are generating .bin files, i will mark those .bin files as Python
 *.bin linguist-language=Python
 
 
